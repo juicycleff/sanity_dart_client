@@ -6,7 +6,7 @@ class DatasetClient
         Crud<CreateUpdateDatasetDto, DatasetResponse, CreateUpdateDatasetDto,
             DeleteResponse> {
   /// HTTP client
-  HttpClient _httpClient;
+  late HttpClient _httpClient;
 
   /// [DatasetClient] Default constructor
   DatasetClient(HttpClient httpClient) {
@@ -15,10 +15,8 @@ class DatasetClient
 
   @override
   Future<DatasetResponse> create(CreateUpdateDatasetDto data) async {
-    var body = {};
-    if (data.aclMode != null) {
-      body['aclMode'] = data.aclMode.toString();
-    }
+    var body = <String, dynamic>{};
+    body['aclMode'] = data.aclMode.toString();
 
     var result = await _httpClient.put<DatasetResponse>(
       '/datasets/${data.name}',
@@ -42,15 +40,16 @@ class DatasetClient
   }
 
   @override
-  Future<DatasetResponse> update(CreateUpdateDatasetDto data) async {
-    var body = {};
-    if (data.aclMode != null) {
+  Future<DatasetResponse?> update(CreateUpdateDatasetDto data) async {
+    if (_httpClient != null) {
+      var body = <String, dynamic>{};
       body['aclMode'] = data.aclMode.toString();
+
+      var result = await _httpClient.patch<DatasetResponse>(
+        '/datasets/${data.name}',
+        data: body,
+      );
+      return result.data;
     }
-    var result = await _httpClient.patch<DatasetResponse>(
-      '/datasets/${data.name}',
-      data: body,
-    );
-    return result.data;
   }
 }

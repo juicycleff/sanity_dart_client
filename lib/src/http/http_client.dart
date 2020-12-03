@@ -3,16 +3,16 @@ part of 'package:sanity_client_flutter/sanity_client_flutter.dart';
 /// [HttpClient] options
 class HttpClientOption {
   /// auth token
-  String authToken;
+  String? authToken;
 
   /// content type
-  String contentType;
+  String? contentType;
 
   /// headers
-  Map<String, dynamic> headers;
+  Map<String, dynamic>? headers;
 
   /// Request base url, it can contain sub path.
-  String baseUrl;
+  String? baseUrl;
 
   /// Timeout in milliseconds for opening url.
   ///  when time out.
@@ -32,11 +32,11 @@ class HttpClientOption {
 class HttpClient {
   HttpClient._internal();
 
-  HttpClientOption _option;
+  late HttpClientOption _option;
 
   /// Singleton lock instance
   bool _lock = false;
-  Dio _dio;
+  late Dio _dio;
 
   /// [HttpClient] constructor that creates a singleton
   factory HttpClient(HttpClientOption option) {
@@ -63,12 +63,12 @@ class HttpClient {
   /// Handy method to make http POST request..
   Future<Response<T>> post<T>(
     String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) {
     return _dio.post<T>(
       path,
@@ -84,10 +84,10 @@ class HttpClient {
   /// Handy method to make http HEAD request..
   Future<Response<T>> head<T>(
     String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
   }) {
     return _dio.head<T>(
       path,
@@ -101,12 +101,12 @@ class HttpClient {
   /// Handy method to make http PUT request..
   Future<Response<T>> put<T>(
     String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) {
     return _dio.put<T>(
       path,
@@ -122,12 +122,12 @@ class HttpClient {
   /// Handy method to make http PATCH request..
   Future<Response<T>> patch<T>(
     String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) {
     return _dio.patch<T>(
       path,
@@ -143,10 +143,10 @@ class HttpClient {
   /// Handy method to make http GET request.
   Future<Response<T>> get<T>(
     String path, {
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) {
     return _dio.get<T>(
       path,
@@ -160,9 +160,9 @@ class HttpClient {
   /// Handy method to make http GET request.
   Future<Response<T>> delete<T>(
     String path, {
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
   }) {
     return _dio.delete<T>(
       path,
@@ -179,12 +179,12 @@ class HttpClient {
   /// [options] The request options.
   Future<Response<T>> request<T>(
     String path, {
-    Map<String, dynamic> data,
-    Map<String, dynamic> queryParameters,
-    CancelToken cancelToken,
-    Options options,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+    Options? options,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) async {
     return _dio.request<T>(
       path,

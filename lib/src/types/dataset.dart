@@ -12,10 +12,10 @@ enum DatasetAclMode {
 /// This is the base class for sanity client configuration
 class DatasetResponse {
   /// Dataset name
-  final String name;
+  final String? name;
 
   /// Dataset acl mode
-  final DatasetAclMode aclMode;
+  final DatasetAclMode? aclMode;
 
   /// Default constructor
   DatasetResponse({
@@ -27,14 +27,14 @@ class DatasetResponse {
 /// This is the base class for sanity client configuration
 class CreateUpdateDatasetDto {
   /// Dataset name
-  final String name;
+  final String? name;
 
   /// Dataset acl mode
-  final DatasetAclMode aclMode;
+  final DatasetAclMode? aclMode;
 
   /// Default constructor
   CreateUpdateDatasetDto({
     this.name,
-    this.aclMode,
+    this.aclMode = DatasetAclMode.public,
   });
 }

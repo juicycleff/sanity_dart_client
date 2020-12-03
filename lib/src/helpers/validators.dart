@@ -22,10 +22,10 @@ bool validateProjectId(String projectId) {
 /// ```dart
 /// validateDataset(production) == true
 /// ```
-bool validateDataset(String name) {
+bool validateDataset(String? name) {
   var exp = RegExp(r"^[-\w]{1,128}$");
 
-  if (!exp.hasMatch(name)) {
+  if (!exp.hasMatch(name!)) {
     throw Exception('''
       `projectId` can only contain only a-z, 0-9 and dashes
     ''');
@@ -39,7 +39,7 @@ bool validateDataset(String name) {
 /// ```dart
 /// hasDataset(config) == production
 /// ```
-String hasDataset(SanityClientOptions config) {
+String? hasDataset(SanityClientOptions config) {
   if (config.dataset == null) {
     throw Exception('`dataset` must be provided to perform queries');
   }

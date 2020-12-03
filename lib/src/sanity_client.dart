@@ -8,18 +8,18 @@ class SanityClient {
   bool _lock = false;
 
   /// Default sanity client options
-  SanityClientOptions _config;
+  late SanityClientOptions _config;
 
   /// [HttpClient] client for http request
-  HttpClient _httpClient;
+  late HttpClient _httpClient;
 
   /// [Dataset] dataset api
-  DatasetClient dataset;
+  late DatasetClient dataset;
 
   static final SanityClient _instance = SanityClient._internal();
 
   _verifyConfig(SanityClientOptions config) {
-    if (config.projectId == null || !validateProjectId(config.projectId)) {
+    if (!validateProjectId(config.projectId)) {
       throw Exception("Configuration must contain `projectId`");
     }
 
@@ -118,5 +118,4 @@ class SanityClient {
     var uri = path != null ? '$baseUri/$path' : baseUri;
     return uri;
   }
-
 }

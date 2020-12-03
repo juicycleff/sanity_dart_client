@@ -3,19 +3,19 @@ part of 'package:sanity_client_flutter/sanity_client_flutter.dart';
 /// This is the base class for sanity client configuration
 abstract class BaseClientOption {
   /// Flag for using CDN or non CDN API
-  bool useCdn;
+  bool? useCdn;
 
   /// Auth token for current user
-  String token;
+  String? token;
 
   /// `Optional` api host name
-  String apiHost;
+  final String apiHost;
 
   /// Default constructor
   BaseClientOption({
     this.useCdn = false,
     this.token,
-    this.apiHost,
+    required this.apiHost,
   });
 }
 
@@ -28,27 +28,26 @@ class SanityClientOptions extends BaseClientOption {
   final String projectId;
 
   /// Actual sanity project dataset name
-  final String dataset;
+  final String? dataset;
 
   /// Flag to check if the api endpoint is default to sanity
-  bool isDefaultApi;
+  bool? isDefaultApi;
 
   /// Sanity CDN endpoint
-  String cdnUrl;
+  String? cdnUrl;
 
   /// Sanity plain endpoint
-  String url;
+  String? url;
 
   /// Default [SanityClientOptions] constructor that takes in all
   /// relevant config options for [SanityClient]
   SanityClientOptions({
     this.useProjectHostname = true,
-    this.projectId,
+    required this.projectId,
     this.dataset,
-    bool useCdn,
-    String token,
+    bool? useCdn,
+    String? token,
     String apiHost = 'https://api.sanity.io',
-    bool withCredentials,
   }) : super(
           apiHost: apiHost,
           useCdn: useCdn,
@@ -58,7 +57,7 @@ class SanityClientOptions extends BaseClientOption {
 /// Simple DTO for delete entity response
 class DeleteResponse {
   /// delete response from http request
-  final bool deleted;
+  final bool? deleted;
 
   /// Constructor
   DeleteResponse({this.deleted});
