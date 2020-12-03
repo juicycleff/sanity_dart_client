@@ -112,7 +112,7 @@ class SanityClient {
     );
   }
 
-  String _getDataUrl(String operation, String path) {
+  String _getDataUrl(String operation, String? path) {
     var catalog = hasDataset(_config);
     var baseUri = '/$operation/$catalog';
     var uri = path != null ? '$baseUri/$path' : baseUri;
